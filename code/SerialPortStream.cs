@@ -10,6 +10,7 @@
 namespace RJCP.IO.Ports
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Text;
     using System.IO;
@@ -2220,6 +2221,26 @@ namespace RJCP.IO.Ports
                 TxContinueOnXOff ? "on" : "off",
                 ((Handshake & Handshake.XOn) != 0) ? "on" : "off",
                 dsrStatus, ctsStatus, dtrStatus, rtsStatus);
+        }
+
+        /// <summary>
+        /// Returns an <see cref="IDictionary{TKey,TValue}"/> containing platform-specific settings for the serial port.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="IDictionary{TKey,TValue}"/> containing platform-specific settings for the serial port.
+        /// </returns>
+        public IDictionary<string, object> GetPlatformSpecificSettings()
+        {
+	        return m_NativeSerial.GetPlatformSpecificSettings();
+        }
+
+        /// <summary>
+        /// Sets the values of any supported platform-specific settings for the serial port.
+        /// </summary>
+        /// <param name="settings">An <see cref="IDictionary{TKey,TValue}"/> containing platform-specific settings for the serial port.</param>
+        public void SetPlatformSpecificSettings(IDictionary<string, object> settings)
+        {
+	        m_NativeSerial.SetPlatformSpecificSettings(settings);
         }
     }
 }

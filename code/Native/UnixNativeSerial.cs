@@ -5,6 +5,7 @@
 namespace RJCP.IO.Ports.Native
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Threading;
     using Trace;
@@ -956,6 +957,15 @@ namespace RJCP.IO.Ports.Native
         /// Occurs when modem pin changes are detected.
         /// </summary>
         public event EventHandler<SerialPinChangedEventArgs> PinChanged;
+
+        public IDictionary<string, object> GetPlatformSpecificSettings()
+        {
+	        return new Dictionary<string, object>();
+        }
+
+        public void SetPlatformSpecificSettings(IDictionary<string, object> settings)
+        {
+        }
 
         protected virtual void OnPinChanged(object sender, SerialPinChangedEventArgs args)
         {

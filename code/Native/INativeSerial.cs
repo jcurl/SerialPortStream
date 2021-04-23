@@ -5,6 +5,7 @@
 namespace RJCP.IO.Ports.Native
 {
     using System;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Interface for accessing serial based streams.
@@ -324,5 +325,19 @@ namespace RJCP.IO.Ports.Native
         /// Occurs when modem pin changes are detected.
         /// </summary>
         event EventHandler<SerialPinChangedEventArgs> PinChanged;
+
+        /// <summary>
+        /// Returns an <see cref="IDictionary{TKey,TValue}"/> containing platform-specific settings for the serial port.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="IDictionary{TKey,TValue}"/> containing platform-specific settings for the serial port.
+        /// </returns>
+        IDictionary<string, object> GetPlatformSpecificSettings();
+
+        /// <summary>
+        /// Sets the values of any supported platform-specific settings for the serial port.
+        /// </summary>
+        /// <param name="settings">An <see cref="IDictionary{TKey,TValue}"/> containing platform-specific settings for the serial port.</param>
+        void SetPlatformSpecificSettings(IDictionary<string, object> settings);
     }
 }
